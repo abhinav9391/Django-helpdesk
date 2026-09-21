@@ -51,7 +51,7 @@ MIDDLEWARE = [
 ]
 
 
-ROOT_URLCONF = "config.urls"
+ROOT_URLCONF = "demodesk.config.urls"
 
 
 TEMPLATES = [
@@ -70,8 +70,7 @@ TEMPLATES = [
 ]
 
 
-WSGI_APPLICATION = "config.wsgi.application"
-
+WSGI_APPLICATION = "demodesk.config.wsgi.application"
 
 # Database
 # PostgreSQL RDS configuration
