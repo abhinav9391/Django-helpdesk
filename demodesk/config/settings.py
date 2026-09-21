@@ -151,13 +151,18 @@ USE_TZ = True
 # ============================================================
 # AWS S3 STATIC FILES
 # ============================================================
+# ============================================================
+# AWS S3 STATIC FILES
+# ============================================================
 
 AWS_STORAGE_BUCKET_NAME = "django-helpdesk-poc-artifacts-593760773720"
 
 AWS_S3_REGION_NAME = "ap-south-1"
 
-# Bucket remains private.
-# Django generates signed URLs for static files.
+# Store static files under the static/ prefix
+AWS_LOCATION = "static"
+
+# Keep the S3 bucket private
 AWS_QUERYSTRING_AUTH = True
 
 AWS_QUERYSTRING_EXPIRE = 3600
@@ -175,7 +180,6 @@ STATIC_URL = (
     f"https://{AWS_STORAGE_BUCKET_NAME}.s3."
     f"{AWS_S3_REGION_NAME}.amazonaws.com/static/"
 )
-
 
 # ============================================================
 # MEDIA
