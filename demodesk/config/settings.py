@@ -8,10 +8,12 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# ============================================================
+# SECURITY
+# ============================================================
+
 SECRET_KEY = "django-insecure-change-this-in-production"
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = [
@@ -22,9 +24,12 @@ ALLOWED_HOSTS = [
 ]
 
 
-# Application definition
+# ============================================================
+# APPLICATIONS
+# ============================================================
 
 INSTALLED_APPS = [
+    # Django
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -33,13 +38,20 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
 
+    # Third-party / project applications
+    "account",
+    "pinax.teams",
     "helpdesk",
     "rest_framework",
     "storages",
-    "pinax.teams",
 ]
+
 SITE_ID = 1
 
+
+# ============================================================
+# MIDDLEWARE
+# ============================================================
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -52,8 +64,18 @@ MIDDLEWARE = [
 ]
 
 
+# ============================================================
+# URL / WSGI
+# ============================================================
+
 ROOT_URLCONF = "demodesk.config.urls"
 
+WSGI_APPLICATION = "demodesk.config.wsgi.application"
+
+
+# ============================================================
+# TEMPLATES
+# ============================================================
 
 TEMPLATES = [
     {
@@ -71,10 +93,9 @@ TEMPLATES = [
 ]
 
 
-WSGI_APPLICATION = "demodesk.config.wsgi.application"
-
-# Database
-# PostgreSQL RDS configuration
+# ============================================================
+# DATABASE - AWS RDS POSTGRESQL
+# ============================================================
 
 DATABASES = {
     "default": {
@@ -91,7 +112,9 @@ DATABASES = {
 }
 
 
-# Password validation
+# ============================================================
+# PASSWORD VALIDATION
+# ============================================================
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -109,7 +132,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
+# ============================================================
+# INTERNATIONALIZATION
+# ============================================================
 
 LANGUAGE_CODE = "en-us"
 
@@ -120,19 +145,18 @@ USE_I18N = True
 USE_TZ = True
 
 
-# ----------------------------------------------------------------------
-# AWS S3 STATIC FILE STORAGE
-# ----------------------------------------------------------------------
+# ============================================================
+# AWS S3 STATIC FILES
+# ============================================================
 
 AWS_STORAGE_BUCKET_NAME = "django-helpdesk-poc-artifacts-593760773720"
 
 AWS_S3_REGION_NAME = "ap-south-1"
 
-# Keep the S3 bucket private.
-# Django will generate signed URLs for static files.
+# Bucket remains private.
+# Django generates signed URLs for static files.
 AWS_QUERYSTRING_AUTH = True
 
-# Optional: signed URLs will remain valid for 1 hour.
 AWS_QUERYSTRING_EXPIRE = 3600
 
 STORAGES = {
@@ -150,26 +174,35 @@ STATIC_URL = (
 )
 
 
-# Media files remain on the application server for now
+# ============================================================
+# MEDIA
+# ============================================================
 
 MEDIA_URL = "/media/"
+
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
-# Default primary key field type
+# ============================================================
+# DJANGO DEFAULT
+# ============================================================
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# ----------------------------------------------------------------------
-# Helpdesk settings
-# ----------------------------------------------------------------------
+# ============================================================
+# DJANGO-HELPDESK SETTINGS
+# ============================================================
 
 HELPDESK_DEFAULT_QUEUE = "IT Support"
 
 HELPDESK_CREATE_TICKET_SUBJECT_PREFIX = ""
 
-HELPDESK_EMAIL_SUBJECT_TEMPLATE = "{{ ticket.ticket }} {{ ticket.title|safe }} %(subject)s"
+# IMPORTANT:
+# django-helpdesk requires "ticket.ticket" to be present.
+HELPDESK_EMAIL_SUBJECT_TEMPLATE = (
+    "{{ ticket.ticket }} {{ ticket.title|safe }} %(subject)s"
+)
 
 HELPDESK_EMAIL_FOLLOWUP_SUBJECT_TEMPLATE = (
     "[{{ ticket.queue.slug }}] {{ ticket.title }}"
@@ -180,9 +213,9 @@ HELPDESK_EMAIL_REPLY_SUBJECT_TEMPLATE = (
 )
 
 
-# ----------------------------------------------------------------------
-# Authentication
-# ----------------------------------------------------------------------
+# ============================================================
+# AUTHENTICATION
+# ============================================================
 
 LOGIN_URL = "/accounts/login/"
 
