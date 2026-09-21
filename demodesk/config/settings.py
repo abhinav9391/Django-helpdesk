@@ -31,14 +31,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
 
     "helpdesk",
     "rest_framework",
-
-    # S3 storage
     "storages",
     "pinax.teams",
 ]
+SITE_ID = 1
 
 
 MIDDLEWARE = [
