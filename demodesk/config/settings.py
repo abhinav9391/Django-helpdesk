@@ -138,11 +138,14 @@ LOGIN_REDIRECT_URL = "helpdesk:home"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "helpdesk_db",
-        "USER": "postgres",
-        "PASSWORD": "Dakareddy@1234",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "NAME": os.environ.get("DB_NAME", "helpdesk_db"),
+        "USER": os.environ.get("DB_USER", "helpdesk_admin"),
+        "PASSWORD": os.environ.get("DB_PASSWORD"),
+        "HOST": os.environ.get(
+            "DB_HOST",
+            "django-helpdesk-poc-postgres.cpaem0kisb5j.ap-south-1.rds.amazonaws.com",
+        ),
+        "PORT": os.environ.get("DB_PORT", "5432"),
     }
 }
 
