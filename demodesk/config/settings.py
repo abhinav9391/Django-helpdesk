@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 
     # S3 storage
     "storages",
+    "pinax_teams",
 ]
 
 
