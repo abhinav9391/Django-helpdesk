@@ -169,7 +169,7 @@ HELPDESK_DEFAULT_QUEUE = "IT Support"
 
 HELPDESK_CREATE_TICKET_SUBJECT_PREFIX = ""
 
-HELPDESK_EMAIL_SUBJECT_TEMPLATE = "[{{ ticket.queue.slug }}] {{ ticket.title }}"
+HELPDESK_EMAIL_SUBJECT_TEMPLATE = "{{ ticket.ticket }} {{ ticket.title|safe }} %(subject)s"
 
 HELPDESK_EMAIL_FOLLOWUP_SUBJECT_TEMPLATE = (
     "[{{ ticket.queue.slug }}] {{ ticket.title }}"
