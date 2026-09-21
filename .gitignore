@@ -63,3 +63,18 @@ demodesk/db.sqlite3
 .vscode/
 .cursor/
 .devcontainer/
+
+
+
+# Local Django generated files
+demodesk/media/
+demodesk/static/
+
+# Terraform generated/state files
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/crash.log
+terraform/crash.*.log
+terraform/*.tfvars
+terraform/*.tfvars.json
