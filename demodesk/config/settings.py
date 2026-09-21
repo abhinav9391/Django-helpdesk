@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
 
-    # Third-party / project applications
+    # Pinax dependencies
     "account",
+    "pinax.invitations",
     "pinax.teams",
+
+    # Project / third-party
     "helpdesk",
     "rest_framework",
     "storages",
